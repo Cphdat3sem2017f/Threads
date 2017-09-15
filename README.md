@@ -1,39 +1,33 @@
-# ORM (Object Relational Mapping) with JPA (Java Persistence API)
+# ORM Concurrency and Threads
 
 ## Plan
 
-### Day 1 - Introduction to ORM
+### Day 1 - Concurency, Thread, Runnable, basic Synchronozation
 
-### Day 2 - More JPA
+### Day 2 - Threads Continued, Producer Consumer, DeadLocks
 
-### Day 3 - JPA & Inheritance
+### Day 3 - Thread Continued, Callables and Futures
 
-### Day 4 - JPQL
+### Day 4 - JavaScript, AJAX, JSON continue
 
 ### Day 5 - Study point exercises
 
-## Learning objectives
+## Learning objectives (Concurrency/threads)
+- Learn the fundamental topics related to concurrency and thread programming
+- Understand the general problems (unrelated to the number of kernels)that can be solved using concurrency
+- Learn how to take advantage, programmatically, of modern multi-kernel CPU's
 
-ORM / JPA / JPQL
-- Create database connection
-- Create persistence unit
-- Use annotations
-- Create entities
-- Handle relations
-- Handle inheritance
-- Handle entities ( Persist / Merge / Remove / Find )
-- Use entity managers
-- Create named / dynamic queries
-- Create facade to handle entities
+## Business competences (Concurrency/threads)
+
+As a programmer there are problems that can only (realistically) be solved using concurrency features
+
+Taking advantage of modern multi-kernel CPU requires an understanding of how to program with threads
+
+These lessons will provide student with the necessary background to use these features in any language/platform but are presented via Java
 
 
 ## Exercises 
-[Exercise 1 - Basic JPA](https://drive.google.com/open?id=1CB9LYW6uzFy6ibe7fLSHGI_5Ymx6kzdSdARNtsNO0ME)<br>
-[Exercise 2 - Relationships](https://drive.google.com/open?id=1Juic12T0bjb2sf-9dTuxrKXa1l5QA6ak-wTTINlK4dY)<br>
-[Exercise 3 - Inheritance](https://drive.google.com/open?id=1IiTDPL4wDW_0S8sWAHxH_ijYu9SyB6xzyql7aRnTomI)<br>
-[Exercise 4 - JPQL](https://drive.google.com/open?id=18QeY8y6yz0JVo39gQfQ22InDUHtBN29ViFao5s4tQPc)
 
 ## Resources: 
-<a href="http://tutorialspoint.com/jpa/" target="_blank">Tutorialspoint - JPA</a><br>
-<a href="https://hendrosteven.wordpress.com/2008/03/06/simple-jpa-application-with-netbeans" target="_blank">Simple JPA Application</a><br>
-<a href="http://www.javacodegeeks.com/2015/02/jpa-tutorial.html" target="_blank">The ULTIMATE Guide</a>
+
+
