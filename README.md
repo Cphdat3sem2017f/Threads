@@ -37,7 +37,9 @@ These lessons will provide student with the necessary background to use these fe
 
 ### Day-1
 
-[The well-grounded Java developer](https://manning-content.s3.amazonaws.com/download/e/15b9513-9763-41e7-9178-5cded4d02996/TWGJD_sample_ch04.pdf) -- I recommend reading the introduction, 4.1.1 (and the 4.1 intro), 4.1.3, 4.2.1 (and the 4.2 intro) and 4.6 **after the lecture**.
+* [The well-grounded Java developer](https://manning-content.s3.amazonaws.com/download/e/15b9513-9763-41e7-9178-5cded4d02996/TWGJD_sample_ch04.pdf) -- I recommend reading the introduction, 4.1.1 (and the 4.1 intro), 4.1.3, 4.2.1 (and the 4.2 intro) and 4.6 **after the lecture**.
+* [slides](https://docs.google.com/presentation/d/1BInXQP497r0TLDH7xUP7Oc06LcHXHkU58IocN-g3djo/edit?usp=sharing)
+
 
 ### Day-2
 
