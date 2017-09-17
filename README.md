@@ -37,7 +37,8 @@ General
 Day-1
 
 Day-2
-[Watch this SHORT video before the lesson to get a conceptual idea about the Producer-Consumer Problem](https://www.youtube.com/watch?v=VXJSJ6c3ZIs)
 
-[Deadlock](https://en.wikipedia.org/wiki/Deadlock)
+- [Watch this SHORT video before the lesson to get a conceptual idea about the Producer-Consumer Problem](https://www.youtube.com/watch?v=VXJSJ6c3ZIs)
+-[Producer/Consumer Solution using BlockingQueue](http://www.java67.com/2015/12/producer-consumer-solution-using-blocking-queue-java.html)
+- [Deadlock](https://en.wikipedia.org/wiki/Deadlock)
 
