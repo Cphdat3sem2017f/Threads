@@ -33,17 +33,17 @@ These lessons will provide student with the necessary background to use these fe
 
 ## Resources: 
 
-###General
+### General
 
-###Day-1
+### Day-1
 
 [The well-grounded Java developer](https://manning-content.s3.amazonaws.com/download/e/15b9513-9763-41e7-9178-5cded4d02996/TWGJD_sample_ch04.pdf) -- I recommend reading the introduction, 4.1.1 (and the 4.1 intro), 4.1.3, 4.2.1 (and the 4.2 intro) and 4.6 **after the lecture**.
 
-###Day-2
+### Day-2
 
 - [Watch this SHORT video before the lesson to get a conceptual idea about the Producer-Consumer Problem](https://www.youtube.com/watch?v=VXJSJ6c3ZIs)
 - [Producer/Consumer Solution using BlockingQueue](http://www.java67.com/2015/12/producer-consumer-solution-using-blocking-queue-java.html)
 - [Deadlock](https://en.wikipedia.org/wiki/Deadlock)
 - [Slides](https://docs.google.com/presentation/d/1GVBy3TSMdaFfSZphN79utRxk1koPO8i9NuNoCX3lKNs/edit?usp=sharing)
 
-###Day-3
+### Day-3
