@@ -1,4 +1,4 @@
-# ORM Concurrency and Threads
+# Concurrency and Threads
 
 ## Plan
 
@@ -27,6 +27,9 @@ These lessons will provide student with the necessary background to use these fe
 
 
 ## Exercises 
+Exercises Day-1 (Thread intro and Synchronization)
+Exercises Day-2 (Producer/Consumer and Deadlocks)
+Exercises Day-3 (Returning values from Threads - Callables and Futures)
 
 ## Resources: 
 
