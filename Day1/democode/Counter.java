@@ -1,4 +1,7 @@
 public class Counter {
+	/* Only thread safe if MutableInteger is threadsafe!
+	 * Specifically, we need increment to be atomic with respect to itself.
+	 */
 	public static void main(String[] args) throws InterruptedException {
 		MutableInteger mi = new MutableInteger();
 		Runnable r = () -> {
@@ -18,7 +21,7 @@ public class Counter {
 		t1.join();
 		t2.join();
 		t3.join();
-
+                  
 		System.out.println(mi.get());
 	}
 }
