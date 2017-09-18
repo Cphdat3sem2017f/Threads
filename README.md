@@ -29,7 +29,7 @@ These lessons will provide student with the necessary background to use these fe
 ## Exercises 
 - [Exercises Day-1](https://docs.google.com/document/d/1zezTIruAiSkhhNCRHJh4EYOcf_mgMblGs6U_XmQ3vp4/edit?usp=sharing)
 - [Exercises Day-2](https://docs.google.com/document/d/1A3rBzbbppVZKx-YrGJKWdgsWKs8xNrTR2BeG7zVu6hg/edit?usp=sharing) (Producer/Consumer and Deadlocks)
-- Exercises Day-3 (Returning values from Threads - Callables and Futures)
+- [Exercises Day-3](https://docs.google.com/document/d/1AkC59GQm5sbwWpKkideE9kI9KmbscIwKOygn9b_FJMU/edit?usp=sharing) (Using an executor service)
 
 ## Resources: 
 
@@ -49,3 +49,13 @@ These lessons will provide student with the necessary background to use these fe
 - [Slides](https://docs.google.com/presentation/d/1GVBy3TSMdaFfSZphN79utRxk1koPO8i9NuNoCX3lKNs/edit?usp=sharing)
 
 ### Day-3
+These are not "read it all" resources, but "get an overview", and "use for
+looking up things later" resources. You should still skim them to get an
+overview.
+
+* [Java ExecutorService api doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html#submit(java.util.concurrent.Callable)) -- The ExecuterService interface.
+* [Java Executors class] (https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executors.html) -- has static methods to instantiate common executor services.
+* [Java Future api doc] (https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html) -- the actual future class
+* [Java Future api doc] (https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html) -- the actual future class
+
+* [Java CompletableFuture api doc] (https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) -- the actual CompletableFuture class
