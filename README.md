@@ -27,7 +27,8 @@ These lessons will provide student with the necessary background to use these fe
 
 
 ## Exercises 
-- Exercises Day-1 (Thread intro and Synchronization)
+- [Exercises Day-1]
+  (https://docs.google.com/document/d/1zezTIruAiSkhhNCRHJh4EYOcf_mgMblGs6U_XmQ3vp4/edit?usp=sharing)
 - [Exercises Day-2](https://docs.google.com/document/d/1A3rBzbbppVZKx-YrGJKWdgsWKs8xNrTR2BeG7zVu6hg/edit?usp=sharing) (Producer/Consumer and Deadlocks)
 - Exercises Day-3 (Returning values from Threads - Callables and Futures)
 
