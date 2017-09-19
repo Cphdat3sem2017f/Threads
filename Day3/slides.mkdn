@@ -1,0 +1,171 @@
+% Threads 3
+% Sigurt Dinesen
+% Asynchronous Java with Futures, Callables and Executor services
+
+# Learning outcomes
+
+## Threads Until now
+  * Threads
+    * What is concurrency? 
+    * java _synchronized_ and _volatile_ keywords
+    * What is: a thread, race-conditions, atomicity, deadlocking,
+      producer/consumer, observables?
+
+## Goals for today
+  * Understand and use modern Java Concurrency features
+    * Immutability
+    * Thread pools
+    * Executors
+    * Futures and Callables
+    * Completable Futures
+
+## Agenda for today
+  * Recap on Threads
+  * Immutability
+  * Threads vs Tasks
+  * Callables
+  * Futures
+  * Completable Futures
+
+## Recap on threads (Q/A)
+  * How do we tell java that code should run in a thread?
+  * The purpose of the `Thread.join()` function
+  * Why do we use threads?
+  * What are race conditions, and how can we fix them?
+  * Explain how Threads can help us in making responsive
+    User Interfaces
+  * What are deadlocks? How do we detect, avoid and/or fix them?
+
+## Recap on threads (Q/A)
+  * synchronized
+    * Locks on what?
+      * Static vs instance functions?
+      * What would locking on an array do?
+  * Do all code/threads/functions/blocks respect locks?
+  * Java’s (default) locks are reentrant: Threads can take the same lock 
+    many times. 
+
+## Immutability
+  * Immutable = cannot be mutated
+    * Same as final keyword in Java
+
+Shared memory leads to race-conditions and starvation. And Possibly
+deadlocking
+
+Solution: Don’t change values!
+
+New problem: How do get data back from threads?
+
+## Runnable interface
+  * Runnable interface to normal Threads as well as executors  
+    * Has one abstract method `run()` that takes no arguments and 
+      returns void:
+
+```java
+public class MyTask implements Runnable{
+  @Override
+  public void run() {
+    // Your method here
+  }
+}
+Runnable r = () -> System.out.println(“hi”);
+```
+
+Forces us to mutate to get result back!
+
+## Callable interface
+  * Callable interface
+    * has one abstract method `call()` that takes no arguments
+  * Generic type: Object of `<T>` where `T` can be any Class
+  * Below is an example with `T` as String:
+```java
+import java.util.concurrent.Callable;
+public class MyTask implements Callable<String> {
+  @Override
+  public String call() throws Exception {
+  // Your method that returns a String here
+    return null;
+  }
+}
+MyTask t = () -> “Hello!”;
+```
+
+## Callable interface
+  * Threads have overhead
+
+  * Better to divide your work into tasks,  
+    and let reusable threads run them.
+
+  * Tasks what we call `Runnable`s and `Callable`s in Java,  
+    when we call them through executors
+
+    ![](Day3/thread-overhead.png)
+
+## Future interface
+  * Threads are asynchronous, so we generally do  
+    not know when we will get the result back
+  * How do we extract the value from a Callable?
+  * `Future<T>` to the rescue
+
+```java
+Future<String> futfut = executor.submit(
+  new Callable<String>(){
+    @Override
+    public String call(){
+      //do stuff
+    }
+  }
+);
+
+//or
+Future<String> futfut = executor.submit(() -> //do stuff);
+```
+
+## Working with futures
+  * A future represents work that will be done at some point  
+    hence the name.
+    * A bit like javascript promises!
+  * There is several ways to get the result from a Future:
+
+```java
+//Get the result when it's ready. 
+//Blocks the thread until then.
+future.get();
+//If you want to escape from the blocking method 
+//no later than a given time, you can set that.
+future.get(10, TimeUnit.MINUTES);
+//Or you can ask if the task is done.
+//Returns a boolean.
+future.isDone();
+```
+
+## ExecutorService
+  * `ExecutorService executor = Executors.newXXXThreadPool();`
+
+  * `NewCachedThreadPool()`
+    * Creates a thread pool that creates new threads as needed, but will 
+      reuse previously constructed threads when they are available.
+
+  * `newFixedThreadPool(int nThreads)`
+    * Creates a thread pool that reuses a fixed number of threads 
+      operating off a shared unbounded queue.
+
+  * `NewSingleThreadExecutor()`
+    * Creates an Executor that uses a single worker thread operating off 
+      an unbounded queue.
+
+## ExecutorService
+  * `newScheduledThreadPool()`
+    * Executes periodically (eg. For database clean up)
+  * From Java 8: `WorkStealingPool()`
+    * Creates a thread pool that maintains enough threads to 
+      support the given parallelism level, and may use multiple 
+      queues to reduce contention.
+
+## Completable Futures
+  * A Future that can be completed
+    * Exactly like javascript promises!
+  * `java.util.concurrent.CompletableFuture<T>`
+  * `thenApply(Function<T, R> fn)`
+  * `thenApplyAsync(Function<T, R> fn, Exectutor e)`
+

@@ -2,11 +2,11 @@
 
 ## Plan
 
-### Day 1 - Concurency, Thread, Runnable, basic Synchronozation
+### [Day 1](Day1) - Concurency, Thread, Runnable, basic Synchronozation
 
 ### Day 2 - Threads Continued, Producer Consumer, DeadLocks
 
-### Day 3 - Thread Continued, Callables and Futures
+### [Day 3](Day3) - Thread Continued, Callables and Futures
 
 ### Day 4 - JavaScript, AJAX, JSON continue
 
@@ -59,3 +59,4 @@ overview.
 * [Java Future api doc](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html) -- the actual future class
 * [Java CompletableFuture api doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) -- the actual CompletableFuture class
 * [Java callable api doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html) -- the actual future class
+* [Slides](Day3)
