@@ -47,6 +47,7 @@ These lessons will provide student with the necessary background to use these fe
 - [Producer/Consumer Solution using BlockingQueue](http://www.java67.com/2015/12/producer-consumer-solution-using-blocking-queue-java.html)
 - [Deadlock](https://en.wikipedia.org/wiki/Deadlock)
 - [Slides](https://docs.google.com/presentation/d/1GVBy3TSMdaFfSZphN79utRxk1koPO8i9NuNoCX3lKNs/edit?usp=sharing)
+- [Code Snippets](https://docs.google.com/document/d/1UwsbhJWybxGbCzWB-pYp8VLeJdGwYsxlsAJvpinZGlc/edit?usp=sharing)
 
 ### Day-3
 These are not "read it all" resources, but "get an overview", and "use for
