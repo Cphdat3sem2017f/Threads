@@ -57,6 +57,5 @@ overview.
 * [Java ExecutorService api doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html#submit(java.util.concurrent.Callable)) -- The ExecuterService interface.
 * [Java Executors class](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executors.html) -- has static methods to instantiate common executor services.
 * [Java Future api doc](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html) -- the actual future class
-* [Java Future api doc](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Future.html) -- the actual future class
-
 * [Java CompletableFuture api doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html) -- the actual CompletableFuture class
+* [Java callable api doc](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Callable.html) -- the actual future class
