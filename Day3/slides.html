@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="Sigurt Dinesen" />
+  <title>Threads 3</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  </style>
+  <link rel="stylesheet" type="text/css" media="screen, projection, print"
+    href="http://www.w3.org/Talks/Tools/Slidy2/styles/slidy.css" />
+  <script src="http://www.w3.org/Talks/Tools/Slidy2/scripts/slidy.js"
+    charset="utf-8" type="text/javascript"></script>
+</head>
+<body>
+<div class="slide titlepage">
+  <h1 class="title">Threads 3</h1>
+  <p class="author">
+Sigurt Dinesen
+  </p>
+  <p class="date">Asynchronous Java with Futures, Callables and Executor services</p>
+</div>
+<div id="learning-outcomes" class="titleslide slide section level1"><h1>Learning outcomes</h1></div><div id="threads-until-now" class="slide section level2">
+<h2>Threads Until now</h2>
+<ul>
+<li>Threads
+<ul>
+<li>What is concurrency?</li>
+<li>java <em>synchronized</em> and <em>volatile</em> keywords</li>
+<li>What is: a thread, race-conditions, atomicity, deadlocking, producer/consumer, observables?</li>
+</ul></li>
+</ul>
+</div><div id="goals-for-today" class="slide section level2">
+<h2>Goals for today</h2>
+<ul>
+<li>Understand and use modern Java Concurrency features
+<ul>
+<li>Immutability</li>
+<li>Thread pools</li>
+<li>Executors</li>
+<li>Futures and Callables</li>
+<li>Completable Futures</li>
+</ul></li>
+</ul>
+</div><div id="agenda-for-today" class="slide section level2">
+<h2>Agenda for today</h2>
+<ul>
+<li>Recap on Threads</li>
+<li>Immutability</li>
+<li>Threads vs Tasks</li>
+<li>Callables</li>
+<li>Futures</li>
+<li>Completable Futures</li>
+</ul>
+</div><div id="recap-on-threads-qa" class="slide section level2">
+<h2>Recap on threads (Q/A)</h2>
+<ul>
+<li>How do we tell java that code should run in a thread?</li>
+<li>The purpose of the <code>Thread.join()</code> function</li>
+<li>Why do we use threads?</li>
+<li>What are race conditions, and how can we fix them?</li>
+<li>Explain how Threads can help us in making responsive User Interfaces</li>
+<li>What are deadlocks? How do we detect, avoid and/or fix them?</li>
+</ul>
+</div><div id="recap-on-threads-qa-1" class="slide section level2">
+<h2>Recap on threads (Q/A)</h2>
+<ul>
+<li>synchronized
+<ul>
+<li>Locks on what?</li>
+<li>Static vs instance functions?</li>
+<li>What would locking on an array do?</li>
+</ul></li>
+<li>Do all code/threads/functions/blocks respect locks?</li>
+<li>Java’s (default) locks are reentrant: Threads can take the same lock many times.</li>
+</ul>
+</div><div id="immutability" class="slide section level2">
+<h2>Immutability</h2>
+<ul>
+<li>Immutable = cannot be mutated
+<ul>
+<li>Same as final keyword in Java</li>
+</ul></li>
+</ul>
+<p>Shared memory leads to race-conditions and starvation. And Possibly deadlocking</p>
+<p>Solution: Don’t change values!</p>
+<p>New problem: How do get data back from threads?</p>
+</div><div id="runnable-interface" class="slide section level2">
+<h2>Runnable interface</h2>
+<ul>
+<li>Runnable interface to normal Threads as well as executors
+<ul>
+<li>Has one abstract method <code>run()</code> that takes no arguments and returns void:</li>
+</ul></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">public</span> <span class="kw">class</span> MyTask <span class="kw">implements</span> <span class="bu">Runnable</span>{
+  <span class="at">@Override</span>
+  <span class="kw">public</span> <span class="dt">void</span> <span class="fu">run</span>() {
+    <span class="co">// Your method here</span>
+  }
+}
+<span class="bu">Runnable</span> r = () -&gt; <span class="bu">System</span>.<span class="fu">out</span>.<span class="fu">println</span>(“hi”);</code></pre></div>
+<p>Forces us to mutate to get result back!</p>
+</div><div id="callable-interface" class="slide section level2">
+<h2>Callable interface</h2>
+<ul>
+<li>Callable interface
+<ul>
+<li>has one abstract method <code>call()</code> that takes no arguments</li>
+</ul></li>
+<li>Generic type: Object of <code>&lt;T&gt;</code> where <code>T</code> can be any Class</li>
+<li><p>Below is an example with <code>T</code> as String:</p>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="kw">import</span><span class="im"> java.util.concurrent.Callable;</span>
+<span class="kw">public</span> <span class="kw">class</span> MyTask <span class="kw">implements</span> <span class="bu">Callable</span>&lt;<span class="bu">String</span>&gt; {
+  <span class="at">@Override</span>
+  <span class="kw">public</span> <span class="bu">String</span> <span class="fu">call</span>() <span class="kw">throws</span> <span class="bu">Exception</span> {
+  <span class="co">// Your method that returns a String here</span>
+<span class="kw">return</span> <span class="kw">null</span>;
+  }
+}
+MyTask t = () -&gt; “Hello!”;</code></pre></div></li>
+</ul>
+</div><div id="callable-interface-1" class="slide section level2">
+<h2>Callable interface</h2>
+<ul>
+<li><p>Threads have overhead</p></li>
+<li><p>Better to divide your work into tasks,<br />
+and let reusable threads run them.</p></li>
+<li><p>Tasks what we call <code>Runnable</code>s and <code>Callable</code>s in Java,<br />
+when we call them through executors</p>
+<div class="figure">
+<img src="assets/thread-overhead.png" alt="thread overhead table" />
+<p class="caption">thread overhead table</p>
+</div></li>
+</ul>
+</div><div id="future-interface" class="slide section level2">
+<h2>Future interface</h2>
+<ul>
+<li>Threads are asynchronous, so we generally do<br />
+not know when we will get the result back</li>
+<li>How do we extract the value from a Callable?</li>
+<li><code>Future&lt;T&gt;</code> to the rescue</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="bu">Future</span>&lt;<span class="bu">String</span>&gt; futfut = executor.<span class="fu">submit</span>(
+  <span class="kw">new</span> <span class="bu">Callable</span>&lt;<span class="bu">String</span>&gt;(){
+    <span class="at">@Override</span>
+    <span class="kw">public</span> <span class="bu">String</span> <span class="fu">call</span>(){
+      <span class="co">//do stuff</span>
+    }
+  }
+);
+
+<span class="co">//or</span>
+<span class="bu">Future</span>&lt;<span class="bu">String</span>&gt; futfut = executor.<span class="fu">submit</span>(() -&gt; <span class="co">//do stuff);</span></code></pre></div>
+</div><div id="working-with-futures" class="slide section level2">
+<h2>Working with futures</h2>
+<ul>
+<li>A future represents work that will be done at some point<br />
+hence the name.
+<ul>
+<li>A bit like javascript promises!</li>
+</ul></li>
+<li>There is several ways to get the result from a Future:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode java"><code class="sourceCode java"><span class="co">//Get the result when it&#39;s ready. </span>
+<span class="co">//Blocks the thread until then.</span>
+future.<span class="fu">get</span>();
+<span class="co">//If you want to escape from the blocking method </span>
+<span class="co">//no later than a given time, you can set that.</span>
+future.<span class="fu">get</span>(<span class="dv">10</span>, <span class="bu">TimeUnit</span>.<span class="fu">MINUTES</span>);
+<span class="co">//Or you can ask if the task is done.</span>
+<span class="co">//Returns a boolean.</span>
+future.<span class="fu">isDone</span>();</code></pre></div>
+</div><div id="executorservice" class="slide section level2">
+<h2>ExecutorService</h2>
+<ul>
+<li><p><code>ExecutorService executor = Executors.newXXXThreadPool();</code></p></li>
+<li><code>NewCachedThreadPool()</code>
+<ul>
+<li>Creates a thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available.</li>
+</ul></li>
+<li><code>newFixedThreadPool(int nThreads)</code>
+<ul>
+<li>Creates a thread pool that reuses a fixed number of threads operating off a shared unbounded queue.</li>
+</ul></li>
+<li><code>NewSingleThreadExecutor()</code>
+<ul>
+<li>Creates an Executor that uses a single worker thread operating off an unbounded queue.</li>
+</ul></li>
+</ul>
+</div><div id="executorservice-1" class="slide section level2">
+<h2>ExecutorService</h2>
+<ul>
+<li><code>newScheduledThreadPool()</code>
+<ul>
+<li>Executes periodically (eg. For database clean up)</li>
+</ul></li>
+<li>From Java 8: <code>WorkStealingPool()</code>
+<ul>
+<li>Creates a thread pool that maintains enough threads to support the given parallelism level, and may use multiple queues to reduce contention.</li>
+</ul></li>
+</ul>
+</div><div id="completable-futures" class="slide section level2">
+<h2>Completable Futures</h2>
+<ul>
+<li>A Future that can be completed
+<ul>
+<li>Exactly like javascript promises!</li>
+</ul></li>
+<li><code>java.util.concurrent.CompletableFuture&lt;T&gt;</code></li>
+<li><code>thenApply(Function&lt;T, R&gt; fn)</code></li>
+<li><code>thenApplyAsync(Function&lt;T, R&gt; fn, Exectutor e)</code></li>
+</ul>
+</div>
+</body>
+</html>

@@ -99,7 +99,7 @@ MyTask t = () -> “Hello!”;
   * Tasks what we call `Runnable`s and `Callable`s in Java,  
     when we call them through executors
 
-    ![](Day3/thread-overhead.png)
+    ![thread overhead table](assets/thread-overhead.png)
 
 ## Future interface
   * Threads are asynchronous, so we generally do  
